@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <div class="flex items-center gap-3">
+      
       <h1
         class="font-cinzel text-2xl md:text-3xl tracking-[0.35em] font-semibold text-gold-gradient"
       >
@@ -41,12 +42,43 @@
         --marine-gold: #d4af37;
         --pearl-white: #f8f6f0;
       }
+      /* Hero animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-subtitle { animation: fadeUp 0.8s ease forwards 0.3s; opacity: 0; }
+    .hero-title    { animation: fadeUp 0.9s ease forwards 0.6s; opacity: 0; }
+    .hero-desc     { animation: fadeUp 0.9s ease forwards 0.9s; opacity: 0; }
+    .hero-cta      { animation: fadeUp 0.9s ease forwards 1.1s; opacity: 0; }
 
       body {
         font-family: "Inter", sans-serif;
         background: var(--deep-ocean);
         color: white;
         overflow-x: hidden;
+      }
+      .hero-subtitle {
+        animation: fadeUp 0.8s ease forwards 0.3s;
+        opacity: 0;
+      }
+      .hero-title {
+        animation: fadeUp 0.9s ease forwards 0.6s;
+        opacity: 0;
+      }
+      .hero-desc {
+        animation: fadeUp 0.9s ease forwards 0.9s;
+        opacity: 0;
+      }
+      .hero-cta {
+        animation: fadeUp 0.9s ease forwards 1.1s;
+        opacity: 0;
+      }
+
+      /* 3D canvas */
+      #ship3d canvas {
+        display: block;
+        margin: 0 auto;
       }
 
       .font-cinzel {
@@ -149,7 +181,44 @@
         </p>
       </div>
     </section>
+     <!-- Scroll indicator -->
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60"
+      >
+        <span class="text-xs tracking-widest text-gray-400">SCROLL</span>
+        <div
+          class="w-px h-12 bg-gradient-to-b from-yellow-400 to-transparent animate-pulse"
+        ></div>
+      </div>
+    </section>
 
+    <!-- STATS BAR -->
+    <section class="bg-slate-900/80 border-y border-slate-800 py-10">
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+      >
+        <div class="stat-bar">
+          <p class="font-cinzel text-3xl text-yellow-400 font-bold">40+</p>
+          <p class="text-xs tracking-widest text-gray-400 mt-2">
+            YEARS FOUNDED
+          </p>
+        </div>
+        <div class="stat-bar">
+          <p class="font-cinzel text-3xl text-yellow-400 font-bold">320</p>
+          <p class="text-xs tracking-widest text-gray-400 mt-2">
+            HULLS DELIVERED
+          </p>
+        </div>
+        <div class="stat-bar">
+          <p class="font-cinzel text-3xl text-yellow-400 font-bold">18</p>
+          <p class="text-xs tracking-widest text-gray-400 mt-2">COUNTRIES</p>
+        </div>
+        <div class="stat-bar">
+          <p class="font-cinzel text-3xl text-yellow-400 font-bold">100%</p>
+          <p class="text-xs tracking-widest text-gray-400 mt-2">CUSTOM BUILT</p>
+        </div>
+      </div>
+    </section>
     <!-- HERITAGE -->
 
     <section id="heritage" class="py-32 bg-slate-900">
@@ -199,10 +268,11 @@
               </p>
 
               <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                The Peach 4 platform introduces FEIP’s lightweight composite
-                hull system, engineered for exceptional stability and fuel
-                efficiency. Ideal for coastal luxury cruising and private
-                ownership.
+                The Peach 4 platform represents FEIP’s entry into refined
+                coastal yachting. Built with our advanced lightweight composite
+                hull system, it delivers exceptional stability, fuel efficiency,
+                and smooth handling. Designed for private owners seeking
+                elegance and reliability in a compact luxury vessel.
               </p>
 
               <ul class="text-sm text-gray-300 space-y-2 mb-6">
@@ -234,10 +304,11 @@
               </p>
 
               <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                The PROM 5.5 platform introduces FEIP’s lightweight composite
-                hull system, engineered for exceptional stability and fuel
-                efficiency. Ideal for coastal luxury cruising and private
-                ownership.
+                The PROM 5.5 platform elevates performance and comfort with a
+                titanium-reinforced hull structure and expanded cruising
+                capabilities. Engineered for longer voyages and enhanced
+                durability, it offers a perfect balance between power,
+                efficiency, and refined luxury.
               </p>
 
               <ul class="text-sm text-gray-300 space-y-2 mb-6">
@@ -270,10 +341,11 @@
               </p>
 
               <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                The Peach 4 platform introduces FEIP’s lightweight composite
-                hull system, engineered for exceptional stability and fuel
-                efficiency. Ideal for coastal luxury cruising and private
-                ownership.
+                The STAN 8 platform represents the pinnacle of FEIP engineering.
+                Featuring an aerospace-grade titanium double hull and integrated
+                smart hull sensor systems, it delivers unmatched strength,
+                speed, and customization. Designed for ultra-luxury exploration
+                and limitless personalization.
               </p>
 
               <ul class="text-sm text-gray-300 space-y-2 mb-6">
@@ -297,145 +369,222 @@
         </div>
       </div>
     </section>
+    <!doctype html>
+    <html lang="en">
+      <!-- ENGINEERING -->
 
-    <!-- 3D SECTION -->
+<section id="craftsmanship" class="py-32 bg-slate-950">
+  <div class="max-w-7xl mx-auto px-6">
 
-    <section class="py-32 bg-black">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <h2 class="font-cinzel text-5xl mb-12">
-          Interactive <span class="text-gold-gradient">Hull Model</span>
-        </h2>
+    <h2 class="text-center font-cinzel text-5xl mb-20">
+      Engineering <span class="text-gold-gradient">Mastery</span>
+    </h2>
 
-        <div id="ship3d" class="w-full h-[500px]"></div>
-      </div>
-    </section>
-    <!-- INQUIRE SECTION -->
+    <div class="grid md:grid-cols-3 gap-12">
 
-    <section id="inquire" class="py-32 bg-slate-900">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="font-cinzel text-5xl mb-6">
-          Request a <span class="text-gold-gradient">Consultation</span>
-        </h2>
+      <!-- ENGINEERING BLOCK 1 -->
 
-        <p class="text-gray-400 mb-12">
-          Speak with our engineering team to begin designing your custom hull.
+      <div class="text-center">
+        <img
+          src="https://www.bmt.org/media/3957/e5446-cutaway-render_07_feb_2020-004.jpg?center=0.43478260869565216,0.54320987654320985&mode=crop&width=1920&height=800&rnd=132913010890000000"
+          class="rounded-xl mb-6 shadow-2xl"
+        />
+
+        <h3 class="font-cinzel text-2xl mb-4">
+          Advanced Hull Architecture
+        </h3>
+
+        <p class="text-gray-400 leading-relaxed text-sm">
+          Every FEIP vessel begins with a hydrodynamic hull architecture
+          engineered through advanced computational simulations. The result
+          is reduced drag, enhanced stability, and exceptional performance
+          across all sea states.
         </p>
-
-        <form class="grid md:grid-cols-2 gap-6 text-left">
-          <input
-            type="text"
-            placeholder="Full Name"
-            class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
-          />
-
-          <input
-            type="email"
-            placeholder="Email Address"
-            class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
-          />
-
-          <input
-            type="text"
-            placeholder="Company / Organization"
-            class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
-          />
-
-          <select
-            class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
-          >
-            <option>Select Hull Class</option>
-            <option>PEACH 4</option>
-            <option>PROM 5.5</option>
-            <option>STAN 8</option>
-          </select>
-
-          <textarea
-            placeholder="Tell us about your project..."
-            rows="5"
-            class="md:col-span-2 bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
-          ></textarea>
-
-          <button
-            class="md:col-span-2 bg-yellow-500 text-black py-4 rounded-lg font-semibold hover:bg-yellow-400 transition"
-          >
-            SEND INQUIRY
-          </button>
-        </form>
       </div>
-    </section>
-    <!-- FOOTER -->
 
-    <footer class="bg-slate-950 py-16 text-center text-gray-500 text-sm">
-      © 2024 FEIP Shipbuilding LTD
-    </footer>
+      <!-- ENGINEERING BLOCK 2 -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.152.0/examples/js/loaders/GLTFLoader.js"></script>
+      <div class="text-center">
+        <img
+          src="https://ceadgroup.com/wp-content/uploads/2026/01/1768250176072-1536x1151.jpeg"
+          class="rounded-xl mb-6 shadow-2xl"
+        />
 
-    <script>
-      window.addEventListener("load", () => {
-        const container = document.getElementById("ship3d");
+        <h3 class="font-cinzel text-2xl mb-4">
+          Material Innovation
+        </h3>
 
-        const scene = new THREE.Scene();
+        <p class="text-gray-400 leading-relaxed text-sm">
+          From composite steel alloys to aerospace-grade titanium structures,
+          FEIP integrates advanced materials that maximize structural strength
+          while minimizing weight — delivering unmatched efficiency and
+          durability.
+        </p>
+      </div>
 
-        const camera = new THREE.PerspectiveCamera(
-          60,
-          container.offsetWidth / 500,
-          0.1,
-          1000,
-        );
+      <!-- ENGINEERING BLOCK 3 -->
 
-        const renderer = new THREE.WebGLRenderer({
-          antialias: true,
-          alpha: true,
-        });
+      <div class="text-center">
+        <img
+          src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&q=80&w=800"
+          class="rounded-xl mb-6 shadow-2xl"
+        />
 
-        renderer.setSize(container.offsetWidth, 500);
+        <h3 class="font-cinzel text-2xl mb-4">
+          Smart Marine Systems
+        </h3>
 
-        container.appendChild(renderer.domElement);
+        <p class="text-gray-400 leading-relaxed text-sm">
+          Integrated smart hull sensors continuously monitor structural
+          integrity, water pressure, and environmental conditions, allowing
+          FEIP vessels to adapt dynamically for optimal safety and efficiency.
+        </p>
+      </div>
 
-        const light1 = new THREE.DirectionalLight(0xffffff, 1);
-        light1.position.set(10, 10, 10);
-        scene.add(light1);
+    </div>
+  </div>
+</section>
 
-        const light2 = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(light2);
+        <!-- 3D SECTION -->
 
-        const loader = new THREE.GLTFLoader();
+        <section class="py-32 bg-black">
+          <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="font-cinzel text-5xl mb-12">
+              Interactive <span class="text-gold-gradient">Hull Model</span>
+            </h2>
 
-        let model;
+            <div id="ship3d" class="w-full h-[500px]"></div>
+          </div>
+        </section>
+        <!-- INQUIRE SECTION -->
 
-        loader.load(
-          "https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf",
+        <section id="inquire" class="py-32 bg-slate-900">
+          <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-cinzel text-5xl mb-6">
+              Request a <span class="text-gold-gradient">Consultation</span>
+            </h2>
 
-          function (gltf) {
-            model = gltf.scene;
-            model.scale.set(4, 4, 4);
+            <p class="text-gray-400 mb-12">
+              Speak with our engineering team to begin designing your custom
+              hull.
+            </p>
 
-            scene.add(model);
+            <form class="grid md:grid-cols-2 gap-6 text-left">
+              <input
+                type="text"
+                placeholder="Full Name"
+                class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
+              />
 
-            animate();
-          },
+              <input
+                type="email"
+                placeholder="Email Address"
+                class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
+              />
 
-          undefined,
+              <input
+                type="text"
+                placeholder="Company / Organization"
+                class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
+              />
 
-          function (error) {
-            console.log("Model failed:", error);
-          },
-        );
+              <select
+                class="bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
+              >
+                <option>Select Hull Class</option>
+                <option>PEACH 4</option>
+                <option>PROM 5.5</option>
+                <option>STAN 8</option>
+              </select>
 
-        camera.position.z = 12;
+              <textarea
+                placeholder="Tell us about your project..."
+                rows="5"
+                class="md:col-span-2 bg-slate-800 p-4 rounded-lg border border-slate-700 focus:border-yellow-500 outline-none"
+              ></textarea>
 
-        function animate() {
-          requestAnimationFrame(animate);
+              <button
+                class="md:col-span-2 bg-yellow-500 text-black py-4 rounded-lg font-semibold hover:bg-yellow-400 transition"
+              >
+                SEND INQUIRY
+              </button>
+            </form>
+          </div>
+        </section>
+        <!-- FOOTER -->
 
-          if (model) {
-            model.rotation.y += 0.01;
-          }
+        <footer class="bg-slate-950 py-16 text-center text-gray-500 text-sm">
+          © 2024 FEIP Shipbuilding LTD
+        </footer>
 
-          renderer.render(scene, camera);
-        }
-      });
-    </script>
-  </body>
-</html>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.152.0/examples/js/loaders/GLTFLoader.js"></script>
+
+        <script>
+          window.addEventListener("load", () => {
+            const container = document.getElementById("ship3d");
+
+            const scene = new THREE.Scene();
+
+            const camera = new THREE.PerspectiveCamera(
+              60,
+              container.offsetWidth / 500,
+              0.1,
+              1000,
+            );
+
+            const renderer = new THREE.WebGLRenderer({
+              antialias: true,
+              alpha: true,
+            });
+
+            renderer.setSize(container.offsetWidth, 500);
+
+            container.appendChild(renderer.domElement);
+
+            const light1 = new THREE.DirectionalLight(0xffffff, 1);
+            light1.position.set(10, 10, 10);
+            scene.add(light1);
+
+            const light2 = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(light2);
+
+            const loader = new THREE.GLTFLoader();
+
+            let model;
+
+            loader.load(
+              "https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf",
+
+              function (gltf) {
+                model = gltf.scene;
+                model.scale.set(4, 4, 4);
+
+                scene.add(model);
+
+                animate();
+              },
+
+              undefined,
+
+              function (error) {
+                console.log("Model failed:", error);
+              },
+            );
+
+            camera.position.z = 12;
+
+            function animate() {
+              requestAnimationFrame(animate);
+
+              if (model) {
+                model.rotation.y += 0.01;
+              }
+
+              renderer.render(scene, camera);
+            }
+          });
+        </script>
+      </body>
+    </html>
+
